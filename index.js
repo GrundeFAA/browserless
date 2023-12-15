@@ -12,35 +12,32 @@ const data = {
   solutionStore: {
     solutions: [
       {
-        id: "d6744c7a-e36c-448f-a59b-a8f5d62b9049",
-        product: "pallereol",
-        height: 4500,
-        depth: 1100,
-        load: 6000,
+        id: "a35b9451-cc4e-4d41-880a-16c2cc2c9151",
+        product: "smavarereol",
+        height: 2500,
+        depth: 500,
         amount: 1,
         setup: [
           {
-            id: "70882368-a2d8-41fe-849c-607da51520ed",
-            type: "bærejern",
-            length: 2700,
-            load: 1800,
+            id: "db483c23-8c11-47fb-ab25-ef4f16dc970b",
+            type: "hylle",
+            length: 1000,
+            load: 200,
             levels: 5,
             amount: 2,
           },
           {
-            id: "96cc0007-78b7-4653-9516-0f0de0043f1e",
-            type: "bærejern",
-            length: 1800,
-            load: 2500,
-            levels: 8,
+            id: "6753f14d-dbea-4ffd-a299-c2d2160c14e2",
+            type: "hylle",
+            length: 1300,
+            load: 200,
+            levels: 3,
             amount: 1,
           },
         ],
       },
     ],
-    activeId: "d6744c7a-e36c-448f-a59b-a8f5d62b9049",
   },
-  itemsAndPricesStore: { accessoryItems: [] },
 };
 
 app.get("/", (req, res) => {
