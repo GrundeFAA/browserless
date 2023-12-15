@@ -4,6 +4,11 @@ FROM node:16-slim
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
+# Create a directory for the PDF files within the container
+# This is where your application will save the PDF files
+RUN mkdir -p /usr/src/app/pdf
+RUN chmod 777 /usr/src/app/pdf
+
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
@@ -41,6 +46,7 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     libxss1 \
     libxtst6 \
+    libnss3 \  # Added library
     && rm -rf /var/lib/apt/lists/*
 
 # Install app dependencies
