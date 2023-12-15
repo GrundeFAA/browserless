@@ -1,4 +1,4 @@
-# Browserless Example
+npm # Browserless Example
 
 This example deploys a self-hosted version of [Browserless](https://browserless.io/).
 
@@ -14,5 +14,6 @@ This example deploys a self-hosted version of [Browserless](https://browserless.
 - Deploy
 
 ## 📝 Notes
+
 - Source repo: https://github.com/browserless/chrome
 - Docs: https://docs.browserless.io/
