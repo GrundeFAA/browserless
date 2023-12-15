@@ -48,7 +48,6 @@ RUN apt-get update && apt-get install -y \
     libxtst6 \
     libnss3 \
     libdrm.so.2 \
-    libgbm-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # Install app dependencies
