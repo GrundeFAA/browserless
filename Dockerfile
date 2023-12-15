@@ -2,20 +2,26 @@
 ARG VERSION=latest
 FROM browserless/chrome:$VERSION
 
-# Set the working directory in the container
+# Create app directory
 WORKDIR /usr/src/app
 
-# Copy the package.json and package-lock.json (if available)
+# Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install Node.js dependencies
-RUN npm install --only=production
+# Create a new user 'appuser' and switch to it.
+# This is a security best practice in Docker.
+RUN adduser --disabled-password --gecos '' appuser
+RUN chown -R appuser /usr/src/app
+USER appuser
 
-# Copy the rest of your application's source code
-COPY . .
+# Install app dependencies
+RUN npm install --omit=dev
 
-# Expose the port the app runs on
+# Bundle app source
+COPY --chown=appuser:appuser . .
+
+# Expose the port your app runs on
 EXPOSE 3000
 
-# Command to run the application
+# Start your app
 CMD [ "npm", "start" ]
