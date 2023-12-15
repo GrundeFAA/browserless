@@ -45,6 +45,8 @@ app.get("/", (req, res) => {
 });
 
 app.get("/createpdf", async (req, res) => {
+  console.time("pdf");
+
   const browser = await puppeteer.launch({
     headless: "new",
     args: ["--no-sandbox", "--disable-setuid-sandbox", "--enable-gpu"],
@@ -71,7 +73,7 @@ app.get("/createpdf", async (req, res) => {
   });
 
   await browser.close();
-
+  console.timeEnd("pdf");
   res.download("pdf/solution.pdf");
 });
 
