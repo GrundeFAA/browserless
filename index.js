@@ -8,6 +8,9 @@ const DOMAIN = process.env.DOMAIN || "localhost:3000";
 const URL = process.env.URL || "http://localhost:3000";
 const PATH = "/bygg/report";
 
+const data =
+  '{"solutionStore":{"solutions":[{"id":"d6744c7a-e36c-448f-a59b-a8f5d62b9049","product":"pallereol","height":4500,"depth":1100,"load":6000,"amount":1,"setup":[{"id":"70882368-a2d8-41fe-849c-607da51520ed","type":"bærejern","length":2700,"load":1800,"levels":5,"amount":2},{"id":"96cc0007-78b7-4653-9516-0f0de0043f1e","type":"bærejern","length":1800,"load":2500,"levels":8,"amount":1}]}],"activeId":"d6744c7a-e36c-448f-a59b-a8f5d62b9049"},"itemsAndPricesStore":{"accessoryItems":[]}}';
+
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
 });
@@ -20,18 +23,27 @@ app.get("/createpdf", async (req, res) => {
   });
   const page = await browser.newPage();
 
-  //   page.setCookie({
-  //     name: "state",
-  //     value: JSON.stringify(data),
-  //     domain: DOMAIN,
-  //   });
+  page.setCookie({
+    name: "state",
+    value: data,
+    domain: DOMAIN,
+  });
 
-  await page.goto("https://www.google.com", { waitUntil: "networkidle2" });
-  await page.pdf({ path: "pdf/google.pdf", format: "A4" });
+  await page.goto(URL + PATH, {
+    waitUntil: "networkidle2",
+    timeout: 45000,
+  });
+  await page.waitForSelector("#report");
+
+  await page.pdf({
+    path: "pdf/solution.pdf",
+    format: "A4",
+    printBackground: true,
+  });
 
   await browser.close();
 
-  res.download("pdf/google.pdf");
+  res.download("pdf/solution.pdf");
 });
 
 app.listen(3000, () => {
