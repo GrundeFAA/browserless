@@ -45,7 +45,9 @@ app.get("/", (req, res) => {
 });
 
 app.get("/createpdf", async (req, res) => {
-  console.time("pdf");
+  const random = Math.random().toString(36).substring(7);
+
+  console.time("pdf - " + random);
 
   const browser = await puppeteer.launch({
     headless: "new",
@@ -73,7 +75,7 @@ app.get("/createpdf", async (req, res) => {
   });
 
   await browser.close();
-  console.timeEnd("pdf");
+  console.timeEnd("pdf - " + random);
   res.download("pdf/solution.pdf");
 });
 
