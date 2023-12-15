@@ -9,8 +9,8 @@ WORKDIR /usr/src/app
 COPY package*.json ./
 
 # Create a new user 'appuser' and switch to it.
-# This is a security best practice in Docker.
-RUN adduser --disabled-password --gecos '' appuser
+# Switch to 'useradd' if 'adduser' is not available.
+RUN useradd -m appuser
 RUN chown -R appuser /usr/src/app
 USER appuser
 
