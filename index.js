@@ -34,8 +34,8 @@ app.get("/createpdf", async (req, res) => {
   res.download("pdf/google.pdf");
 });
 
-app.listen(3001, () => {
-  console.log("Server is running on port 3001.");
+app.listen(3000, () => {
+  console.log("Server is running on port 3000.");
 });
 
 function base64ToBlob(base64, mimeType) {
