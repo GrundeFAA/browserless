@@ -46,7 +46,7 @@ RUN apt-get update && apt-get install -y \
     libxrender1 \
     libxss1 \
     libxtst6 \
-    libnss3 \  # Added library
+    libnss3 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install app dependencies
