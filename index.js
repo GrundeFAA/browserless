@@ -49,12 +49,12 @@ app.get("/createpdf", async (req, res) => {
 
   const browser = await puppeteer.launch({
     headless: "new",
-    args: ["--no-sandbox", "--disable-setuid-sandbox", "--enable-gpu"],
+    args: ["--no-sandbox", "--disable-setuid-sandbox", "--use-gl=swiftshader"],
     ignoreDefaultArgs: ["--disable-extensions"],
   });
   const page = await browser.newPage();
 
-  page.setCookie({
+  await page.setCookie({
     name: "state",
     value: JSON.stringify(data),
     domain: DOMAIN,
