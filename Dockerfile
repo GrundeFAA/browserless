@@ -47,7 +47,6 @@ RUN apt-get update && apt-get install -y \
     libxss1 \
     libxtst6 \
     libnss3 \
-    libdrm.so.2 \
     && rm -rf /var/lib/apt/lists/*
 
 # Install app dependencies
