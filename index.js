@@ -8,8 +8,40 @@ const DOMAIN = process.env.DOMAIN || "localhost:3000";
 const URL = process.env.URL || "http://localhost:3000";
 const PATH = "/bygg/report";
 
-const data =
-  '{"solutionStore":{"solutions":[{"id":"d6744c7a-e36c-448f-a59b-a8f5d62b9049","product":"pallereol","height":4500,"depth":1100,"load":6000,"amount":1,"setup":[{"id":"70882368-a2d8-41fe-849c-607da51520ed","type":"bærejern","length":2700,"load":1800,"levels":5,"amount":2},{"id":"96cc0007-78b7-4653-9516-0f0de0043f1e","type":"bærejern","length":1800,"load":2500,"levels":8,"amount":1}]}],"activeId":"d6744c7a-e36c-448f-a59b-a8f5d62b9049"},"itemsAndPricesStore":{"accessoryItems":[]}}';
+const data = {
+  solutionStore: {
+    solutions: [
+      {
+        id: "d6744c7a-e36c-448f-a59b-a8f5d62b9049",
+        product: "pallereol",
+        height: 4500,
+        depth: 1100,
+        load: 6000,
+        amount: 1,
+        setup: [
+          {
+            id: "70882368-a2d8-41fe-849c-607da51520ed",
+            type: "bærejern",
+            length: 2700,
+            load: 1800,
+            levels: 5,
+            amount: 2,
+          },
+          {
+            id: "96cc0007-78b7-4653-9516-0f0de0043f1e",
+            type: "bærejern",
+            length: 1800,
+            load: 2500,
+            levels: 8,
+            amount: 1,
+          },
+        ],
+      },
+    ],
+    activeId: "d6744c7a-e36c-448f-a59b-a8f5d62b9049",
+  },
+  itemsAndPricesStore: { accessoryItems: [] },
+};
 
 app.get("/", (req, res) => {
   res.json({ message: "Hello World!" });
@@ -25,7 +57,7 @@ app.get("/createpdf", async (req, res) => {
 
   page.setCookie({
     name: "state",
-    value: data,
+    value: JSON.stringify(data),
     domain: DOMAIN,
   });
 
